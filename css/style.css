@@ -1,0 +1,170 @@
+/*Brandon Watson
+  76996200
+  SI339 HW5*/
+
+/*Animate logo with keyframes. Grow 25px to 475px and opacity from 0 to 1*/
+#logo {
+    width: 475px;
+    animation: hw5_move 5s;
+}
+
+@keyframes hw5_move {
+    from {width: 25px}
+    to {width: 475px}
+    from {opacity: 0}
+    to {opacity: 1}
+}
+
+/*Use Poppins font for body element. Display concrete_seamless.png as background image with a backup color of #f1f1f1*/
+body {
+    font-family: Poppins, serif;
+    background: url("../images/concrete_seamless.png");
+    background-color: #f1f1f1;
+}
+
+/*Edit all instances of header tag to use flex*/
+header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/*Keep all links same color*/
+li a:visited{
+    color: blue;
+}
+
+/*Apply required styling to header children of card class*/
+.card > header {
+    background: #288088;
+    border: solid 2px #45ADAD;
+    padding: 20px 0 20px 0;
+    border-radius: 50px 50px 0 0;
+    align-items: center;
+}
+
+/*Change flex-property to specify initial size of 450px for card class*/
+.card {
+    flex-basis: 450px;
+    flex-direction: column;
+    border-radius: 50px;
+
+}
+
+/*Edit pricing class to use flex and center horizontally and vertically to match example*/
+.pricing{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+/*Style images in gallery class to match example. Use flex and centered horizontally and vertically*/
+.gallery img {
+    border: 10px solid #50C7C7;
+    margin: 10px;
+    width: 300px;
+}
+
+/*Edit gallery class to use flex to match example. Check 1200px and 1500px examples*/
+.gallery{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/*For screen sizes greater than 899px*/
+@media screen and (min-width: 900px){
+
+    /*Edit all instances of header tag and nav_links to match example with flex-properties. Logo far left as possible and links far right as possible. Do not use pos properties*/
+    header,.nav_links {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /*Edit pricing and card classes to match example. Use flex-property to specify a size of 275px. Elements will have same width but not same height.*/
+    .pricing {
+        display: flex;
+        flex-direction: row;
+        /*justify-content: space-between;*/
+        align-items: center;
+
+    }
+    .card {
+        flex-basis: 275px;
+    }
+
+    /*Modify first header outside of main so that it is visible at the top of the screen still while scrolling. Make sure it's always visible.*/
+    .about {
+        padding-top: 100px;
+    }
+
+    .skip:focus {
+        top: 0;
+        z-index: 2;
+    }
+
+    .skip + header{
+        position: fixed;
+        width: 100%;
+        z-index: 1;
+        margin-bottom: 100px;
+    }
+}
+
+/*Stop animation if user prefers reduced motion*/
+@media screen and (prefers-reduced-motion: reduce){
+    #logo {
+        animation: none;
+    }
+}
+
+/*For printed pages*/
+@media print{
+
+    /*Change body font to arial with a backup of helvetica. Remove background images*/
+    body {
+        font-family: Arial, Helvetica, serif;
+        background: none;
+    }
+
+    /*Edit nav/nav_links so that they are spaced according to example*/
+    nav{
+        width: 100%;
+    }
+    .nav_links {
+        display: flex;
+        flex-wrap: wrap;
+
+        justify-content: space-evenly;
+    }
+
+    /*Edit the pricing class so that elements align along the bottom. As long as they align at bottom all okay*/
+    .pricing {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        margin-top: auto;
+        align-items: flex-end;
+    }
+
+    /*Card elements should have a solid border 2px #45ADDD with flex-basis of 325px*/
+    .card{
+        border: 2px #45ADDD solid;
+        flex-basis: 325px;
+        border-radius: 50px 50px 0 0;
+        margin-bottom: 75px;
+
+    }
+
+    .gallery, #gallery{
+        display: none;
+    }
+
+    main li:nth-child(2)::after {
+        content: '👍';
+    }
+
+}
